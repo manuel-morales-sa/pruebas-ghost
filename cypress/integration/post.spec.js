@@ -5,9 +5,9 @@ describe("Probando cypress sobre Ghost", function () {
   it("visits los estudiantes and survives monkeys", function () {
    //Función para loguearse en la app
     Login(user, password);
-    Create_Publish_Post();
-    Update_Publish_Post();
-    //Publish_to_unpublish();
+    //Create_Publish_Post();
+    //Update_Publish_Post();
+    Publish_to_unpublish();
   });
 });
 
@@ -21,7 +21,7 @@ function Login(user, password) {
   }
 
   function Create_Publish_Post(){
-    cy.get('#ember28').click();
+    cy.get('.ember-view').contains('Posts').click();
     cy.wait(1000);
     cy.get('#ember29 > span').click();
     cy.wait(1000);
@@ -40,7 +40,7 @@ function Login(user, password) {
 }
 
 function Update_Publish_Post(){
-  cy.get('#ember28').click();
+  cy.get('.ember-view').contains('Posts').click();
   cy.wait(1000);
   cy.get('.posts-list > :nth-child(2)').click();
   cy.wait(1000);
@@ -57,4 +57,18 @@ function Update_Publish_Post(){
   cy.wait(1000);
   cy.get('.fw3').click();
 
+}
+
+function Publish_to_unpublish(){
+  cy.get('.ember-view').contains('Posts').click();
+  cy.wait(1000);
+  cy.get('.posts-list > :nth-child(2)').click();
+  cy.wait(1000);
+  cy.get('.gh-publishmenu').click();
+  cy.wait(2000);
+  cy.get('.gh-publishmenu-radio-content').contains('Unpublished').click();
+  cy.wait(2000);
+  cy.get('.gh-publishmenu-button').click();
+  cy.wait(1000);
+  cy.get('.fw3').click();
 }
