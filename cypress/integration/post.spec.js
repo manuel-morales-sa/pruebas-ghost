@@ -6,8 +6,8 @@ describe("Probando cypress sobre Ghost", function () {
    //Función para loguearse en la app
     Login(user, password);
     Create_Publish_Post();
-    //Update_Publish_Post();
-    Publish_to_unpublish();
+    Update_Publish_Post();
+    //Publish_to_unpublish();
   });
 });
 
@@ -37,4 +37,24 @@ function Login(user, password) {
     cy.wait(1000);
     cy.get('.fw3').click();
     cy.wait(5000);
+}
+
+function Update_Publish_Post(){
+  cy.get('#ember28').click();
+  cy.wait(1000);
+  cy.get('.posts-list > :nth-child(2)').click();
+  cy.wait(1000);
+  cy.get('.gh-editor-title').clear();
+  cy.get('.gh-editor-title').type('Primera Guerra Mundial');
+  cy.wait(1000);
+  cy.get('.koenig-editor__editor').clear();
+  cy.wait(1000);
+  cy.get('.koenig-editor__editor').type('La Primera Guerra Mundial, anteriormente llamada la Gran Guerra, fue una confrontación bélica centrada en Europa que empezó el 28 de julio de 1914 y finalizó el 11 de noviembre de 1918, cuando Alemania aceptó las condiciones del armisticio.');
+  cy.wait(1000);
+  cy.get('.gh-publishmenu').click();
+  cy.wait(1000);
+  cy.get('.gh-publishmenu-button').click();
+  cy.wait(1000);
+  cy.get('.fw3').click();
+
 }
