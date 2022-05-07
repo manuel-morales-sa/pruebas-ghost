@@ -5,9 +5,10 @@ describe("Probando cypress sobre Ghost", function () {
   it("visits los estudiantes and survives monkeys", function () {
    //Función para loguearse en la app
     Login(user, password);
-    //Create_Publish_Post();
-    //Update_Publish_Post();
+    Create_Publish_Post();
+    Update_Publish_Post();
     Publish_to_unpublish();
+    Deleting_Post();
   });
 });
 
@@ -72,3 +73,14 @@ function Publish_to_unpublish(){
   cy.wait(1000);
   cy.get('.fw3').click();
 }
+function Deleting_Post(){
+  cy.get('.ember-view').contains('Posts').click();
+  cy.wait(1000);
+  cy.get('.posts-list > :nth-child(2)').click();
+  cy.wait(1000);
+  cy.get('.post-settings').click();
+  cy.wait(1000);
+  cy.get('form > .gh-btn > span').click();
+  cy.wait(1000);
+  cy.get('.gh-btn-red').click();
+  cy.wait(1000);}
